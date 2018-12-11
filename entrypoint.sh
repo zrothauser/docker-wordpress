@@ -3,11 +3,6 @@
 # Ensure Apache is running
 service apache2 start
 
-# Link codeception config if not yet linked
-if [ ! -e codeception.dist.yml ]; then
-	ln -s ../config/codeception.dist.yml ./codeception.dist.yml
-fi
-
 # Download WordPress
 wp core download \
 	--skip-content \

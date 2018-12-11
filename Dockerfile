@@ -24,6 +24,11 @@ RUN docker-php-ext-install \
     mysqli \
     opcache
 
+# Add WP-CLI
+RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+COPY wp-su.sh /bin/wp
+RUN chmod +x /bin/wp-cli.phar /bin/wp
+
 # Configure php
 RUN echo "date.timezone = UTC" >> /usr/local/etc/php/php.ini
 
@@ -39,10 +44,10 @@ RUN composer global require --optimize-autoloader \
     "hirak/prestissimo"
 
 # Install wp-browser globally
-RUN composer global require lucatume/wp-browser:^2.1 league/factory-muffin:^3.0 league/factory-muffin-faker:^2.0
+# RUN composer global require lucatume/wp-browser:^2.1 league/factory-muffin:^3.0 league/factory-muffin-faker:^2.0
 
 # Add composer global binaries to PATH
-ENV PATH "$PATH:~/.composer/vendor/bin"
+# ENV PATH "$PATH:~/.composer/vendor/bin"
 
 # Set up WordPress config
 ENV WP_ROOT_FOLDER="."
