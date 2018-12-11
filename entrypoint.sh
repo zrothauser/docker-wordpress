@@ -24,7 +24,8 @@ wp config create \
 	--skip-check \
 	--quiet \
 	--allow-root
-
+wp config set WP_HOME $WP_URL
+wp config set WP_SITEURL $WP_URL
 
 # Install WP if not yet installed
 if ! $( wp core is-installed --allow-root ); then

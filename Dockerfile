@@ -46,16 +46,12 @@ ENV PATH "$PATH:~/.composer/vendor/bin"
 
 # Set up WordPress config
 ENV WP_ROOT_FOLDER="."
-ENV WP_URL="http://localhost"
-ENV WP_DOMAIN="localhost"
+ENV WP_URL="http://wordpress-test"
+ENV WP_DOMAIN="wordpress-test.local"
 ENV WP_TABLE_PREFIX="wp_"
 ENV ADMIN_EMAIL="admin@wordpress.local"
 ENV ADMIN_USERNAME="admin"
 ENV ADMIN_PASSWORD="password"
-
-# Set up wp-browser / codeception
-WORKDIR /var/www/config
-COPY    config/codeception.dist.yml codeception.dist.yml
 
 # Set up Apache
 RUN  echo 'ServerName localhost' >> /etc/apache2/apache2.conf
